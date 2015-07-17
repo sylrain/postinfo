@@ -22,7 +22,6 @@ public class ForumForm {
         this.userName = userName;
     }
 
-
     public boolean isLogining() {
         return isLogining;
     }

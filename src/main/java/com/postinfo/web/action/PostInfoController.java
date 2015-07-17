@@ -36,12 +36,12 @@ public class PostInfoController extends BaseController {
     public Map<String,Object> queryList(){
         Map<String,Forum> forumMap = Forum.getForumMap();
         List<Forum> forums = new ArrayList<Forum>();
-        Iterator it = forumMap.entrySet().iterator();
+        Iterator it = forumMap.keySet().iterator();
         while (it.hasNext()){
             String key = it.next().toString();
             forums.add(forumMap.get(key));
         }
-        return dataTableJson(forums);
+        return dataTableJson(forums.size(),forums);
     }
 
     @RequestMapping("/login")
