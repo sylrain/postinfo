@@ -10,8 +10,9 @@ import java.util.Map;
  *         Created by Administrator on 15-7-16.
  */
 public class TianYa extends Forum {
-    public TianYa(String userName, String password, String url) {
-        super(userName, password, url);
+
+    public TianYa(String userName, String password, String url, int forumCode) {
+        super(userName, password, url, forumCode);
     }
 
     @Override
