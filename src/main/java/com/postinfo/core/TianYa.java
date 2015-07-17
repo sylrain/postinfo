@@ -1,5 +1,6 @@
 package com.postinfo.core;
 
+
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.NicelyResynchronizingAjaxController;
 import com.gargoylesoftware.htmlunit.WebClient;
@@ -32,7 +33,7 @@ public class TianYa extends Forum {
 	    webClient.getOptions().setJavaScriptEnabled(true);
 
 	    webClient.setAjaxController(new NicelyResynchronizingAjaxController());
-	    webClient.getOptions().setTimeout(60000); // 60秒过期
+//	    webClient.getOptions().setTimeout(60000); // 60秒过期
 	    try {
 		    webClient.getOptions().setUseInsecureSSL(true);
 

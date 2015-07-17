@@ -1,5 +1,7 @@
 package com.postinfo.core;
 
+import com.gargoylesoftware.htmlunit.BrowserVersion;
+import com.gargoylesoftware.htmlunit.NicelyResynchronizingAjaxController;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.*;
 
@@ -19,7 +21,25 @@ public class XiCi extends Forum {
 
     @Override
     public WebClient createWebClient() {
-        return null;
+	    WebClient webClient = new WebClient(
+			    BrowserVersion.INTERNET_EXPLORER_11);
+	    webClient.getOptions().setThrowExceptionOnScriptError(false);
+	    webClient.getOptions().setThrowExceptionOnFailingStatusCode(false);
+	    webClient.getOptions().setCssEnabled(false);
+	    webClient.getOptions().setActiveXNative(false);
+
+
+	    webClient.getOptions().setJavaScriptEnabled(true);
+
+	    webClient.setAjaxController(new NicelyResynchronizingAjaxController());
+	    //	    webClient.getOptions().setTimeout(60000); // 60秒过期
+	    try {
+		    webClient.getOptions().setUseInsecureSSL(true);
+
+	    } catch (Exception e) {
+		    e.printStackTrace();
+	    }
+	    return webClient;
     }
 
     @Override
