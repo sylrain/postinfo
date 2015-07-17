@@ -1,7 +1,6 @@
 package com.postinfo.web.action;
 
 import com.postinfo.core.Forum;
-import com.postinfo.core.ForumFactory;
 import com.postinfo.web.form.ForumForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,6 +32,7 @@ public class PostInfoController extends BaseController {
     }
 
     @RequestMapping("/queryList")
+    @ResponseBody
     public Map<String,Object> queryList(){
         Map<String,Forum> forumMap = Forum.getForumMap();
         List<Forum> forums = new ArrayList<Forum>();
@@ -45,12 +45,35 @@ public class PostInfoController extends BaseController {
     }
 
     @RequestMapping("/login")
+    @ResponseBody
     public Map<String,Object> login(ForumForm forumForm){
-        Forum forum = ForumFactory.createForum(forumForm.getUserName(),forumForm.getPassword(),forumForm.getUrl(),forumForm.getForumCode());
+        Forum forum = Forum.forumMap.get(forumForm.getUserName()+","+forumForm.getForumCode());
         if (forum==null){
             return getFailResult("此论坛账号不存在");
         }
         forum.login();
+        return getSuccessResult();
+    }
+
+    @RequestMapping("/postInfo")
+    @ResponseBody
+    public  Map<String,Object> postInfo(ForumForm forumForm){
+        Forum forum = Forum.forumMap.get(forumForm.getUserName()+","+forumForm.getForumCode());
+        if (forum==null){
+            return getFailResult("此论坛账号不存在");
+        }
+        forum.postInfo(forumForm.getTitle(),forumForm.getContent(),forumForm.getAttrs());
+        return getSuccessResult();
+    }
+
+    @RequestMapping("/vaildLogin")
+    @ResponseBody
+    public  Map<String,Object> vaildLogin(ForumForm forumForm){
+        Forum forum = Forum.forumMap.get(forumForm.getUserName()+","+forumForm.getForumCode());
+        if (forum==null){
+            return getFailResult("此论坛账号不存在");
+        }
+        forum.vaildLogining();
         return getSuccessResult();
     }
 }

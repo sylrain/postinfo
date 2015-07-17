@@ -1,15 +1,18 @@
 package com.postinfo.web.form;
 
+import java.util.Map;
+
 /**
  * @author sunyu
  *         Created by Administrator on 15-7-17.
  */
 public class ForumForm {
     private String userName;
-    private String password;
-    private String url;
     private boolean isLogining;
     private int forumCode;
+    private String title;
+    private String content;
+    private Map<String,String> attrs;
 
     public String getUserName() {
         return userName;
@@ -19,21 +22,6 @@ public class ForumForm {
         this.userName = userName;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
 
     public boolean isLogining() {
         return isLogining;
@@ -49,5 +37,29 @@ public class ForumForm {
 
     public void setForumCode(int forumCode) {
         this.forumCode = forumCode;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Map<String, String> getAttrs() {
+        return attrs;
+    }
+
+    public void setAttrs(Map<String, String> attrs) {
+        this.attrs = attrs;
     }
 }
