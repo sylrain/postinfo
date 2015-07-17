@@ -1,6 +1,7 @@
 package com.postinfo.core;
 
 import com.gargoylesoftware.htmlunit.WebClient;
+import com.gargoylesoftware.htmlunit.html.*;
 
 import java.util.Map;
 
@@ -13,6 +14,7 @@ public class XiCi extends Forum {
     public XiCi(String userName, String password, String url, int forumCode) {
         super(userName, password, url, forumCode);
     }
+    private WebClient webClient;
 
     @Override
     public WebClient createWebClient() {
@@ -21,8 +23,33 @@ public class XiCi extends Forum {
 
     @Override
     public boolean login() {
-        System.out.print("aaa");
-        return false;
+	    HtmlPage htmlPage = null;
+	    try {
+		    htmlPage = webClient.getPage(getUrl());
+
+		    HtmlElement htmlElement = htmlPage.getBody();
+            HtmlTextInput loginName = (HtmlTextInput)htmlElement.getElementsByTagName("input").get(0);
+            HtmlPasswordInput loginPass = (HtmlPasswordInput)htmlElement.getElementsByTagName("input").get(1);
+		    loginName.setValueAttribute(getUserName());
+		    loginPass.setValueAttribute(getPassword());
+
+		    HtmlButton button = (HtmlButton)htmlElement.getElementsByTagName("button").get(0);
+		    htmlPage = button.click();
+		    String text = htmlPage.asText();
+		    if(text.contains("我的首页")){
+			    return true;
+		    }
+	    } catch (Exception e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+	    } finally {
+		    if (htmlPage != null) {
+			    htmlPage.cleanUp();
+			    htmlPage = null;
+		    }
+	    }
+
+	    return false;
     }
 
     @Override
