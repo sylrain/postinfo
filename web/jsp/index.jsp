@@ -178,6 +178,26 @@
                     var template = Handlebars.compile($(templateId).html());
                     return template(data);
                 }
+
+                $("#postAll").click(function(){
+                    alert(1);
+                    var title = $("#title").val();
+                    var content = $("#content").val();
+                    $.each(selector.data,function(index,item){
+                        alert(2);
+                        $.post("/postInfo",{forumName:item,title:title,content:content})
+                                .done(function(res){
+                                    if(res.result == 'success'){
+                                        alert("发布成功");
+                                    } else {
+                                        alert(res.msg);
+                                    }
+                                })
+                                .fail(function(){
+                                    alert("网络错误");
+                                })
+                    });
+                });
           }
         );
         function login(forumCode,userName){
@@ -206,6 +226,7 @@
                         alert('网络错误');
                     });
         }
+
     </script>
 
       <script id="checkbox-template" type="text/x-handlebars-template">

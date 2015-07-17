@@ -58,7 +58,7 @@ public class PostInfoController extends BaseController {
     @RequestMapping("/postInfo")
     @ResponseBody
     public  Map<String,Object> postInfo(ForumForm forumForm){
-        Forum forum = Forum.forumMap.get(forumForm.getUserName()+","+forumForm.getForumCode());
+        Forum forum = Forum.forumMap.get(forumForm.getForumName());
         if (forum==null){
             return getFailResult("此论坛账号不存在");
         }

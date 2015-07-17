@@ -12,6 +12,7 @@ public class ForumForm {
     private int forumCode;
     private String title;
     private String content;
+    private String forumName;
     private Map<String,String> attrs;
 
     public String getUserName() {
@@ -60,5 +61,13 @@ public class ForumForm {
 
     public void setAttrs(Map<String, String> attrs) {
         this.attrs = attrs;
+    }
+
+    public String getForumName() {
+        return forumName;
+    }
+
+    public void setForumName(String forumName) {
+        this.forumName = forumName;
     }
 }
