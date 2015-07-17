@@ -14,11 +14,10 @@ import java.util.Map;
  */
 public class TianYa extends Forum {
 
-	private WebClient webClient;
-
-    public TianYa(String userName, String password, String url) {
-        super(userName, password, url);
+    public TianYa(String userName, String password, String url, int forumCode) {
+        super(userName, password, url, forumCode);
     }
+    private WebClient webClient;
 
     @Override
     public WebClient createWebClient() {

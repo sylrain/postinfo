@@ -13,11 +13,10 @@ import java.util.Map;
  */
 public class XiCi extends Forum {
 
-	private WebClient webClient;
-
-    public XiCi(String userName, String password, String url) {
-        super(userName, password, url);
+    public XiCi(String userName, String password, String url, int forumCode) {
+        super(userName, password, url, forumCode);
     }
+    private WebClient webClient;
 
     @Override
     public WebClient createWebClient() {
