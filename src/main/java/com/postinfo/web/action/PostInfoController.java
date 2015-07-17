@@ -51,7 +51,12 @@ public class PostInfoController extends BaseController {
         if (forum==null){
             return getFailResult("此论坛账号不存在");
         }
-        forum.login();
+        if (forum.login()){
+            forum.setLogining(true);
+        }else {
+            forum.setLogining(false);
+        }
+        Forum.forumMap.put(forumForm.getUserName()+","+forumForm.getForumCode(),forum);
         return getSuccessResult();
     }
 
@@ -73,7 +78,12 @@ public class PostInfoController extends BaseController {
         if (forum==null){
             return getFailResult("此论坛账号不存在");
         }
-        forum.vaildLogining();
+        if (forum.vaildLogining()){
+            forum.setLogining(true);
+        } else {
+            forum.setLogining(false);
+        }
+        Forum.forumMap.put(forumForm.getUserName()+","+forumForm.getForumCode(),forum);
         return getSuccessResult();
     }
 }

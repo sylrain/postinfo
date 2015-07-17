@@ -71,7 +71,6 @@
                     fnServerData:function(sSource,aoData,fnCallback){
                         $.post(sSource,function(json){
                             if(json.result == 'success'){
-                                console.log(json.data);
                                 fnCallback(json.data);
                             }else{
                                 alert("失败");
@@ -135,7 +134,7 @@
                     {
                         mDataProp:function(aData,type,val){
                             val = "未登录";
-                            if(aData.isLogining){
+                            if(aData.logining){
                                 val =  "已登录"
                             }
                             return val;
@@ -143,7 +142,7 @@
                     },
                      {
                             mDataProp:function(aData,type,val){
-                                return html("#html-template", {forumCode: aData.forumCode,userName:aData.userName,isLogining:aData.isLogining});
+                                return html("#html-template", {forumCode: aData.forumCode,userName:aData.userName});
                             }
                      }
                     ],
@@ -159,7 +158,6 @@
                     var checked = $(this).prop("checked");
                     $.each($("#forumList input[name='id']"), function () {
                         var val = $(this).val();
-                        console.log(checked+","+val);
                         if (checked) {
                             selector.add(val);
                         } else {
@@ -234,7 +232,7 @@
       </script>
       <script id="html-template" type="text/x-handlebars-template">
           <div>
-                  <a href="javascript:login('{{forumCode}}','{{userName}}');" class="btn btn-default toggle-detail" hidden="{{isLogining}}">
+                  <a href="javascript:login('{{forumCode}}','{{userName}}');" class="btn btn-default toggle-detail">
                       <i class="icon icon-edit"></i>登录
                   </a>
                   <a href="javascript:vaildLogin('{{forumCode}}','{{userName}}');" class="btn btn-default toggle-detail">

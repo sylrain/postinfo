@@ -13,7 +13,7 @@ public abstract  class Forum {
     private String userName;
     private String password;
     private String url;
-    private boolean isLogining;
+    private boolean logining;
     private int forumCode;
 
     public static Map<String,Forum> forumMap;
@@ -43,7 +43,11 @@ public abstract  class Forum {
     }
 
     public boolean isLogining() {
-        return isLogining;
+        return logining;
+    }
+
+    public void setLogining(boolean logining) {
+        this.logining = logining;
     }
 
     public static Map<String, Forum> getForumMap() {

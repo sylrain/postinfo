@@ -8,7 +8,7 @@ import java.util.Map;
  */
 public class ForumForm {
     private String userName;
-    private boolean isLogining;
+    private boolean logining;
     private int forumCode;
     private String title;
     private String content;
@@ -24,11 +24,11 @@ public class ForumForm {
     }
 
     public boolean isLogining() {
-        return isLogining;
+        return logining;
     }
 
     public void setLogining(boolean isLogining) {
-        this.isLogining = isLogining;
+        this.logining = isLogining;
     }
 
     public int getForumCode() {
