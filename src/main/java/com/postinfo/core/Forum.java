@@ -47,7 +47,7 @@ public abstract  class Forum {
     }
 
     public static Map<String, Forum> getForumMap() {
-        if (forumMap == null){
+        if (forumMap == null||forumMap.size() == 0){
             init();
         }
         return forumMap;
@@ -67,11 +67,9 @@ public abstract  class Forum {
         }
         //toDo 读取execl
 
-        Forum tianYa = ForumFactory.createForum("","","",1);
-        tianYa.createWebClient();
-        tianYa.login();
+        Forum tianYa = ForumFactory.createForum("a","","",1);
         forumMap.put(tianYa.getUserName()+","+ForumType.TianYa.getCode(),tianYa);
-        Forum xiCi = ForumFactory.createForum("","","",2);
+        Forum xiCi = ForumFactory.createForum("b","","",2);
         forumMap.put(xiCi.getUserName()+","+ForumType.XiCi.getCode(),xiCi);
     }
 
@@ -82,8 +80,8 @@ public abstract  class Forum {
     public static void main(String[] args) {
         init();
         Map<String,Forum> map = getForumMap();
-        Forum forum = map.get(",1");
-        Forum forum2 = map.get(",2");
+        Forum forum = map.get("a,1");
+        Forum forum2 = map.get("b,2");
         System.out.println(forum.vaildLogining());
         System.out.println(forum2.vaildLogining());
     }

@@ -11,15 +11,17 @@
     <title>
         论坛控制页
     </title>
+      <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
       <script type="text/javascript" src="../js/jquery.dataTables.init.js"></script>
       <script type="text/javascript" src="../js/jquery.dataTables.min.js"></script>
-      <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
       <script type="text/javascript" src="../js/handlebars1.3.0.js"></script>
   </head>
   <body>
       <div>
           <h3>选择上传文件</h3><input type="file" name="file-upload" id="file-upload"/><input id="upload" type="button" value="上传"/>
       </div>
+      <hr/>
+      <hr/>
       <div>
            <form id="search">
                <div>
@@ -37,10 +39,11 @@
                        </tbody>
                 </table>
                </div>
+               <hr/>
                <div>
                    <input type="text" id="title" name="title" placeholder = "帖子名称"/>
                    <br/>
-                   <input type="textArea" id="content" name="content" placeholder="帖子内容" />
+                   <h5>帖子内容:</h5><textarea id="content" name="content" placeholder="帖子内容"></textarea>
                    <br/>
                    <input type="button" id="postAll" value="一键发帖"/>
                </div>
@@ -150,7 +153,7 @@
                     ]
                 }
 
-            )
+            );
 
                 $("#chk").click(function () {
                     var checked = $(this).prop("checked");
