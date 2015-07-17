@@ -80,7 +80,23 @@ public class XiCi extends Forum {
 
     @Override
     public boolean vaildLogining() {
-        System.out.print("ccc");
-        return false;
+	    HtmlPage htmlPage = null;
+	    try {
+		    htmlPage = webClient.getPage(getUrl());
+
+		    if(htmlPage.asText().contains("我的首页")){
+			    return true;
+		    }
+	    } catch (Exception e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+	    } finally {
+		    if (htmlPage != null) {
+			    htmlPage.cleanUp();
+			    htmlPage = null;
+		    }
+	    }
+
+	    return false;
     }
 }
