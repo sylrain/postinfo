@@ -6,6 +6,7 @@ import com.gargoylesoftware.htmlunit.NicelyResynchronizingAjaxController;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.*;
 
+import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -79,7 +80,25 @@ public class TianYa extends Forum {
 
     @Override
     public boolean postInfo(String title, String content, Map<String, String> attrs) {
-        return true;
+	    HtmlPage htmlPage = null;
+	    try {
+		    htmlPage = webClient.getPage(getUrl());
+		    DomElement htmlElement = htmlPage.getElementById("BBS_BLOCK");
+		    HtmlTextInput input = (HtmlTextInput)htmlElement.getElementsByTagName("input").get(0);
+		    input.setTextContent(title);
+		    HtmlTextArea area = (HtmlTextArea)htmlElement.getElementsByTagName("textarea").get(0);
+		    area.setTextContent(content);
+		    HtmlRadioButtonInput radioButtonInput = (HtmlRadioButtonInput)htmlPage.getElementsByName("isSelf").get(1);
+		    radioButtonInput.click();
+		    HtmlSelect hs = (HtmlSelect) htmlPage.getElementsByTagName("select").get(0);
+		    hs.getOption(1).setSelected(true);
+		    HtmlButtonInput button = (HtmlButtonInput)htmlElement.getElementsByTagName("input").get(1);
+		    HtmlPage htmlPage1 = button.click();
+	    } catch (IOException e) {
+		    e.printStackTrace();
+	    }
+
+	    return true;
     }
 
     @Override
